@@ -1,0 +1,13 @@
+.DS_Store
+node_modules
+*.log
+explorations
+TODOs.md
+dist/*.gz
+dist/*.map
+coverage
+RELEASE_NOTE*.md
+*.avi
+*.ts
+.vscode
+*.mp4
