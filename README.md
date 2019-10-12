@@ -42,6 +42,8 @@
 * `connection.query('SELECT * FROM students WHERE id = ?', [userId],function())`
 * `connection.query('SELECT * FROM students WHERE ?', {id:'要查询的值'},function())`
 * `connection.query('SELECT * FROM ? WHERE id=?', [students,'要查询的值'],function())`
+  
+  
 |                           命令                           |                   操作                   |
 | :------------------------------------------------------: | :--------------------------------------: |
 |                 `delete  from students`                  |                删除表所有                |
