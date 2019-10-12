@@ -18,7 +18,7 @@ app.use('/static', express.static('static/'))
 // let sql = 'select *  from students where ?' //查询满足条件 + options
 // // let sql = 'insert into students set ?'//表添加记录 + options
 // // let sql = 'update students set ? where `name`= "唐国超"'//修改所有满足条件
-let sql = 'select * from students where age between 10 and 20'
+let sql = 'select *  from students where gender="男" and age>10'
 
 pool(sql).then((re) => {
     console.log(re)

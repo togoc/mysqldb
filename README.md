@@ -55,3 +55,13 @@
 |    `select * from students where age not in (18,20)`     |     查询在指定集合内不满足条件的记录     |
 |   `select * from students where age between 10 and 20`   |                 区域查询                 |
 | `select * from students where age not between 10 and 20` |                反区域查询                |
+|        `select * from students where age is null`        |                 空值查询                 |
+|      `select * from students where age is not null`      |                反空值查询                |
+|           `select distinct name from students`           |       某属性下所有不重复关键字查询       |
+|      `select *  from students where name like "t%"`      |              某属性 t 开头               |
+|      `select *  from students where name like "%c"`      |              某属性 c 结尾               |
+|     `select *  from students where name like "t%c"`      |           某属性 t 开头,c 结尾           |
+|     `select *  from students where name like "%g%"`      |                  包含 g                  |
+|   `select *  from students where name not like "%g%"`    |                 不包含 g                 |
+|  `select *  from students where gender="男" and age>10`  |                多条件查询                |
+|  `select *  from students where gender="男" or age>10`   |               满足一个条件               |
