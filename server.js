@@ -10,13 +10,17 @@ app.use('/', express.static('static'))
 app.use('/static', express.static('static/'))
 
 
-let post = { name: "唐国超" }
+// let options = { name: "tgc" }
 
-// let sql = 'delete  from students WHERE `姓名`= "唐国超" '
-// let sql = 'select *  from students '
-let sql = 'insert into students set ?'
-// let sql = 'update students set ? where `name`= "tgc"'
-pool(sql, post).then((re) => {
+// // let sql = 'delete  from students '//删除表所有
+// // let sql = 'delete  from students where ? '//删除满足条件的所有记录
+// // let sql = 'select *  from students where `name`="唐国超"' //查询满足条件的所有记录
+// let sql = 'select *  from students where ?' //查询满足条件 + options
+// // let sql = 'insert into students set ?'//表添加记录 + options
+// // let sql = 'update students set ? where `name`= "唐国超"'//修改所有满足条件
+let sql = 'select * from students where age between 10 and 20'
+
+pool(sql).then((re) => {
     console.log(re)
 })
 // terminate(sql).then((re) => {
@@ -27,7 +31,7 @@ pool(sql, post).then((re) => {
 
 
 app.get("/test", (req, res) => {
-    let sql = "select * from students where '姓名'='唐国超 "
+    let sql = "select * from students "
     pool(sql).then((re) => {
         res.send(re)
     })

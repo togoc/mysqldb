@@ -20,6 +20,9 @@ const pool = mysql.createPool(options)
  */
 const connection = function (sql, options) {
     return new Promise((resolve, reject) => {
+        pool.on('acquire', function (connection) {
+            console.log('Pool Connection %d acquired', connection.threadId);
+        });
         pool.getConnection(function (err, connection) {
             if (err) throw err; // not connected!
 
@@ -35,10 +38,18 @@ const connection = function (sql, options) {
                 // Don't use the connection here, it has been returned to the pool.
             });
         })
+        pool.on('release', function (connection) {
+            console.log('Pool Connection %d released', connection.threadId);
+
+        });
+
     });
 }
 
-
+// pool.end(function (err) {
+//     console.log('Pool Connection end');
+//     // all connections in the pool have ended
+// });
 
 
 module.exports = connection

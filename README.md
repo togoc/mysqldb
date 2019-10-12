@@ -22,3 +22,34 @@
     });
     connection.connect();
   ```
+
+### SQL语言
+
+> * DDL: 数据库定义语言,主要对数据库,数据库表进行创建删除
+
+| 关键字 | 作用   | 例子 |
+| :----: | :----- | :--- |
+| create | 创建表 |      |
+| alert  | 修改表 |      |
+|  drop  | 删除表 |      |
+|  show  | 查询表 |      |
+
+
+> * DCL: 数据库操控语言,控制数据库访问权限
+> * DML: 数据库操作语言,对表中数据进行,增删改查
+> * DQL: 数据库查询语言,对表中数据进行 查询
+> * [官方文档](https://www.npmjs.com/package/mysql#escaping-query-values)
+* `connection.query('SELECT * FROM students WHERE id = ?', [userId],function())`
+* `connection.query('SELECT * FROM students WHERE ?', {id:'要查询的值'},function())`
+* `connection.query('SELECT * FROM ? WHERE id=?', [students,'要查询的值'],function())`
+|                           命令                           |                   操作                   |
+| :------------------------------------------------------: | :--------------------------------------: |
+|                 `delete  from students`                  |                删除表所有                |
+|           `select *  from students where ?=?`            | 查询满足条件的所有记录,或者后面加options |
+|            `delete  from students where ?=?`             | 删除所有满足条件的记录,或者后面加options |
+|              `insert into students set ?=?`              | 删除所有满足条件的记录,或者后面加options |
+|          `select * from students where age>10`           |                 条件查询                 |
+|      `select * from students where age in (18,20)`       |      查询在指定集合内满足条件的记录      |
+|    `select * from students where age not in (18,20)`     |     查询在指定集合内不满足条件的记录     |
+|   `select * from students where age between 10 and 20`   |                 区域查询                 |
+| `select * from students where age not between 10 and 20` |                反区域查询                |
