@@ -38,7 +38,9 @@
 > * DCL: 数据库操控语言,控制数据库访问权限
 > * DML: 数据库操作语言,对表中数据进行,增删改查
 > * DQL: 数据库查询语言,对表中数据进行 查询
-> * [官方文档](https://www.npmjs.com/package/mysql#escaping-query-values)
+
+
+* [官方文档](https://www.npmjs.com/package/mysql#escaping-query-values)
 * `connection.query('SELECT * FROM students WHERE id = ?', [userId],function())`
 * `connection.query('SELECT * FROM students WHERE ?', {id:'要查询的值'},function())`
 * `connection.query('SELECT * FROM ? WHERE id=?', [students,'要查询的值'],function())`
