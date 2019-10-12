@@ -10,35 +10,38 @@ const options = {
     database: 'school'
 }
 
-function PoolConnection(options) {
-    this.pool = mysql.createPool(options)
-    this.name = 1
+
+const pool = mysql.createPool(options)
+
+/**
+ * 连接数据库,并查询
+ * 返回一个包含结果的Promise对象
+ * @param {string} sql sql语句
+ */
+const connection = function (sql, options) {
+    return new Promise((resolve, reject) => {
+        pool.getConnection(function (err, connection) {
+            if (err) throw err; // not connected!
+
+            // Use the connection
+            connection.query(sql, options, function (error, results) {
+                resolve(results)
+
+                // When done with the connection, release it.
+                connection.release();
+                // Handle error after the release.
+
+                if (error) throw error;
+                // Don't use the connection here, it has been returned to the pool.
+            });
+        })
+    });
 }
 
-PoolConnection.prototype = {
-    connection: function (sql) {
-        return new Promise((resolve, reject) => {
-            this.pool.getConnection(function (err, connection) {
-                if (err) throw err; // not connected!
-
-                // Use the connection
-                connection.query(sql, function (error, results) {
-                    resolve(results)
-
-                    // When done with the connection, release it.
-                    connection.release();
-                    // Handle error after the release.
-
-                    if (error) throw error;
-                    // Don't use the connection here, it has been returned to the pool.
-                });
-            })
-        });
-    }
-}
 
 
-module.exports = new PoolConnection(options)
+
+module.exports = connection
 
 
 

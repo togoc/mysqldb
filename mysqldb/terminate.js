@@ -9,25 +9,32 @@ const options = {
     port: "10207",//不能直接在host后面加端口
     database: 'school'
 }
-const connection = mysql.createConnection(options)
-connection.connect();
-var sql = "SELECT * FROM students"
-connection.query(sql, function (err, result) {
-    if (err)
-        console.log(err);
-    console.log('The solution is: ', result[0]["姓名"]);
-});
-// connection.end()
 
+/**
+ * 连接数据库,并查询
+ * 返回一个包含结果的Promise对象
+ * @param {string} sql sql语句
+ */
+function connect(sql, option) {
+    return new Promise((resolve, reject) => {
+        const connection = mysql.createConnection(options)
+        connection.connect((err) => {
+            if (err) {
+                console.error('error connecting: ' + err.stack);
+                return;
+            }
+            console.log('connected as id ' + connection.threadId);
+        });
 
-const connection = mysql.createConnection(options)
-// connection.connect();
-var sql = "SELECT * FROM students"
-connection.query(sql, function (err, result) {
-    if (err)
-        console.log(err);
-    console.log('The solution is: ', result[0]["姓名"]);
-});
-// connection.end()
+        connection.query(sql, option, function (err, result) {
+            if (err)
+                console.log(err);
+            resolve(result)
+            // console.log('The solution is: ', result);
+        });
+        connection.end()
+    })
 
-// module.exports = mysql.createConnection(options);
+}
+
+module.exports = connect

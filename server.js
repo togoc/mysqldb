@@ -1,51 +1,39 @@
 const express = require("express")
 const fs = require("fs")
-const pool = require("./mysqldb/pool")
 const app = express()
+//两种连接方式
+const pool = require("./mysqldb/pool")
+const terminate = require("./mysqldb/terminate")
 
+//app路径设置
 app.use('/', express.static('static'))
 app.use('/static', express.static('static/'))
 
 
+let post = { name: "唐国超" }
 
-
-
-
-
-// const mysql = require("mysql")
-
-
-// const options = {
-
-//     host: 'cdb-dwdx0mn8.bj.tencentcdb.com',
-//     user: 'root',
-//     password: 'tgc_423684',
-//     port: "10207",//不能直接在host后面加端口
-//     database: 'school'
-// }
-
-// const connection = mysql.createConnection(options)
-// const pool = mysql.createPool(options)
+// let sql = 'delete  from students WHERE `姓名`= "唐国超" '
+// let sql = 'select *  from students '
+let sql = 'insert into students set ?'
+// let sql = 'update students set ? where `name`= "tgc"'
+pool(sql, post).then((re) => {
+    console.log(re)
+})
+// terminate(sql).then((re) => {
+//     console.log(re)
+// })
 
 
 
 
 app.get("/test", (req, res) => {
-    pool.connection(sql).then((re) => {
+    let sql = "select * from students where '姓名'='唐国超 "
+    pool(sql).then((re) => {
         res.send(re)
     })
 
 
 })
-var sql = "SELECT * FROM students"
-// console.log(pool.connection(sql))
-
-// var sql = "SELECT * FROM students"
-// pool.query(sql, function (err, result) {
-//     if (err)
-//         console.log(err);
-//     console.log('The solution is: ', result[0]["姓名"]);
-// });
 
 
 
