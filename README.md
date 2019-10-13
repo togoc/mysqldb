@@ -57,6 +57,10 @@ CREATE TABLE teacher(
   * 删除用户:
   * 修改用户密码:
   * 查询用户
+    * 1. 切换到mysql数据库 `use mysql`
+    * 2. 查询用户表 `select * from user`
+    * 通配符: % 表示可以再任意主机使用用户登录
+
 
 
 
