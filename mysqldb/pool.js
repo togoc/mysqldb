@@ -24,8 +24,8 @@ const connection = function (sql, options) {
             console.log('Pool Connection %d acquired', connection.threadId);
         });
         pool.getConnection(function (err, connection) {
-            if (err) throw err; // not connected!
-
+            if (err)// throw err; // not connected!
+                console.log(err)
             // Use the connection
             connection.query(sql, options, function (error, results) {
                 resolve(results)
@@ -34,7 +34,8 @@ const connection = function (sql, options) {
                 connection.release();
                 // Handle error after the release.
 
-                if (error) throw error;
+                if (error)// throw error;
+                    console.log(error)
                 // Don't use the connection here, it has been returned to the pool.
             });
         })

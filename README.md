@@ -27,12 +27,29 @@
 
 #### DDL: 数据库定义语言,主要对数据库,数据库表进行创建删除
 
-| 关键字 | 作用   | 例子 |
-| :----: | :----- | :--- |
-| create | 创建表 |      |
-| alert  | 修改表 |      |
-|  drop  | 删除表 |      |
-|  show  | 查询表 |      |
+| 关键字 | 作用           | 例子 |
+| :----: | :------------- | :--- |
+| create | 创建表或数据库 | `cr` |
+| alert  | 修改表         |      |
+|  drop  | 删除表         |      |
+|  show  | 查询表         |      |
+
+* 创建数据库,不带编码选默认.
+
+```
+CREATE database 数据库名 charset 编码;
+```
+
+* 创建表.
+
+```
+CREATE TABLE teacher(
+    -- 字段名1 数据类型1(长度) 约束 
+    tid int(11) PRIMARY KEY,
+    -- 字段名2 数据类型2(长度) 默认值 
+    gender varchar(10) default'男' check(gender='男' or gender='女')
+    )
+```
 
 
 #### DCL: 数据库操控语言,控制数据库访问权限
@@ -67,3 +84,11 @@
 |   `select *  from students where name not like "%g%"`    |                 不包含 g                 |
 |  `select *  from students where gender="男" and age>10`  |                多条件查询                |
 |  `select *  from students where gender="男" or age>10`   |               满足一个条件               |
+|                                                          |                                          |
+|             查询语句+`order by  键名1,键名2`             |            可根据键名进行排序            |
+|          查询语句+`order by  键名1,键名2 DESC`           |           可根据键名进行反排序           |
+|        查询语句+`order by  键名1 ASC,键名2 DESC`         |               根据选择排序               |
+
+
+
+* 约束`ALTER TABLE students_course ADD CONSTRAINT s_sid_c_sid FOREIGN KEY (sid) REFERENCES students (sid)`
