@@ -68,7 +68,7 @@ CREATE TABLE teacher(
   * 授予权限: `grant 权限列表 on 数据库名.表名 to '用户名'@'主机名'`
     * 例子: `grant select,delete,update on school.students to '用户名'@'主机名'` 
     * 给所有权限: `grant all on *.* to '用户名'@'主机名'`
-  
+  * 撤销权限: `revoke 权限列表 on 数据库名.表名 from '用户名'@'主机名'`
 
 
 
