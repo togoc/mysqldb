@@ -54,12 +54,13 @@ CREATE TABLE teacher(
 
 #### DCL: 数据库操控语言,控制数据库访问权限
   * 添加用户:
+    * `create user '用户名'@'主机名' identified by '密码'` 
   * 删除用户:
   * 修改用户密码:
   * 查询用户
     * 1. 切换到mysql数据库 `use mysql`
     * 2. 查询用户表 `select * from user`
-    * 通配符: % 表示可以再任意主机使用用户登录
+    * 通配符: % 表示可以再任意主机使用用户登录数据库
 
 
 
