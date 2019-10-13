@@ -50,6 +50,7 @@ CREATE TABLE teacher(
     gender varchar(10) default'男' check(gender='男' or gender='女')
     )
 ```
+* 约束`ALTER TABLE students_course ADD CONSTRAINT s_sid_c_sid FOREIGN KEY (sid) REFERENCES students (sid)`
 
 
 #### DCL: 数据库操控语言,控制数据库访问权限
@@ -110,4 +111,3 @@ CREATE TABLE teacher(
 
 
 
-* 约束`ALTER TABLE students_course ADD CONSTRAINT s_sid_c_sid FOREIGN KEY (sid) REFERENCES students (sid)`
