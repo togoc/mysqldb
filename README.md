@@ -53,17 +53,22 @@ CREATE TABLE teacher(
 
 
 #### DCL: 数据库操控语言,控制数据库访问权限
-  * 添加用户:
-    * `create user '用户名'@'主机名' identified by '密码'` .
-  * 删除用户:
-    * `drop user '用户名'@'主机名'` .
-  * 修改用户密码:
-    * `update user set password=password('新密码') where user = '用户名'`
-  * 查询用户
-    * 1.切换到mysql数据库 `use mysql`.
-    * 2.查询用户表 `select * from user`.
-    * 通配符: % 表示可以再任意主机使用用户登录数据库
-
+* 添加用户:
+  * `create user '用户名'@'主机名' identified by '密码'` .
+* 删除用户:
+  * `drop user '用户名'@'主机名'` .
+* 修改用户密码:
+  * `update user set password=password('新密码') where user = '用户名'`
+* 查询用户
+  * 1.切换到mysql数据库 `use mysql`.
+  * 2.查询用户表 `select * from user`.
+  * 通配符: % 表示可以再任意主机使用用户登录数据库
+* 权限管理
+  * 查询权限: `show grants for '用户名'@'主机名'`
+  * 授予权限: `grant 权限列表 on 数据库名.表名 to '用户名'@'主机名'`
+    * 例子: `grant select,delete,update on school.students to '用户名'@'主机名'` 
+    * 给所有权限: `grant all on *.* to '用户名'@'主机名'`
+  
 
 
 
