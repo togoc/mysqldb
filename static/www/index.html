@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon.ico" />
+    <link rel="stylesheet" href="./static/css/index.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.js"></script>
+    <title>mysql</title>
+
+</head>
+
+<body>
+    <header>
+        <a href="#home">home</a>
+        <a href="#login">login</a>
+        <a href="#new">new</a>
+    </header>
+    <div id="home" class="home">home</div>
+    <div id="login" class="login">login</div>
+    <div id="new" class="new">new</div>
+</body>
+<script src="/static/js/index.js"></script>
+<script>
+
+    let a = document.querySelectorAll('a')
+    for (let i = 0; i < a.length; i++) {
+        a[i].addEventListener('click', function (event) {
+
+            console.log(scrollX, scrollY)
+        })
+    }
+    window.onmousewheel = function (event) {
+        /*
+        0
+        1040
+        2080
+        */
+        var turn = event.wheelDelta
+        setTimeout(() => {
+            console.log(scrollY, turn)
+            if ((20 <= scrollY && scrollY <= 1020) && event.wheelDelta <= 0) {
+                window.scrollTo(0, 1040)
+            }
+            if ((scrollY <= 10) && event.wheelDelta >= 0) {
+                window.scrollTo(0, 0)
+            }
+
+
+            if ((1050 <= scrollY && scrollY <= 2000) && event.wheelDelta <= 0) {
+                window.scrollTo(0, 2080)
+            }
+            if ((500 <= scrollY && scrollY <= 1040) && event.wheelDelta >= 0) {
+                window.scrollTo(0, 0)
+            }
+
+
+
+
+            if ((1050 <= scrollY && scrollY <= 2080) && event.wheelDelta >= 0) {
+                window.scrollTo(0, 1040)
+            }
+
+            if ((2080 <= scrollY) && event.wheelDelta <= 0) {
+                window.scrollTo(0, 2080)
+            }
+
+
+            // if ((2060 <= scrollY && scrollY <= 3000) && event.wheelDelta <= 0) {
+            //     window.scrollTo(0, 1040)
+            // }
+            // if ((2060 <= scrollY && scrollY <= 3000) && event.wheelDelta >= 0) {
+            //     window.scrollTo(0, 2080)
+            // }
+
+
+
+        }, 100)
+    }
+
+</script>
+
+</html>
