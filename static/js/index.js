@@ -8,11 +8,8 @@
 // })
 
 
-document.querySelectorAll('a')[1].onclick = () => {
-    console.log(scrollY)
-}
 
-
+// 滚动进化
 window.addEventListener("mousewheel", function (event) {
     /**
      * 0
@@ -31,3 +28,19 @@ window.addEventListener("mousewheel", function (event) {
 
 
 })
+
+//选择动画
+function toggleClassPlu(elem, name) {
+    for (let i = 0; i < elem.length; i++) {
+        if (elem[i].classList.contains(name)) {
+            elem[i].classList.remove(name)
+        }
+    }
+}
+let selectItems = document.querySelectorAll('.select a')
+for (let i = 0; i < selectItems.length; i++) {
+    selectItems[i].addEventListener("click", function () {
+        toggleClassPlu(selectItems, "select_active")
+        this.classList.add("select_active")
+    })
+}

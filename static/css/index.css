@@ -1,6 +1,5 @@
 /* 初始化 */
 
-input,
 button,
 a {
     cursor: pointer;
@@ -22,6 +21,141 @@ html {
     scroll-behavior: smooth;
 }
 
+
+/* 表 */
+
+form * {
+    border: 1px solid #eee;
+    font-size: 14px;
+    padding: 0px;
+}
+
+table {
+    width: 100%;
+}
+
+
+/* 模式 */
+
+.model_area {
+    width: 100%;
+    height: 100vh;
+}
+
+.block_area {
+    width: 100%;
+    height: 65px;
+}
+
+.normal_container,
+.login_model_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.search {
+    margin-top: 20px;
+    height: 20%;
+    border-radius: 5px;
+    width: 50%;
+    padding: 5px;
+}
+
+.search_input_container {
+    margin-top: 10px;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.search_input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.select {
+    display: flex;
+    list-style: none;
+    height: 100%;
+    width: 40%;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    flex-direction: row;
+}
+
+.select a:hover {
+    border-radius: 2px;
+    background-color: rgb(185, 118, 118);
+}
+
+.select a {
+    transition: all .5s;
+}
+
+.select_active {
+    border-radius: 2px;
+    background-color: rgb(185, 118, 118);
+}
+
+.select a {
+    padding: 2px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.search_input span:last-of-type {
+    color: rgb(231, 20, 20);
+    height: 18px;
+    width: 20px;
+    background-image: url(../images/search.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border: .5px solid #767676;
+    display: block;
+    border-left: none;
+    cursor: pointer;
+}
+
+.btn {
+    outline: none;
+    border-width: 2px;
+    height: 100%;
+}
+
+.location {
+    width: 100%;
+    height: 30%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.search_list {
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    width: 50%;
+    margin-bottom: 5%;
+    height: 90%;
+}
+
+.login_model_container {
+    width: 100%;
+    height: 100%;
+    background: rgb(185, 118, 118);
+}
+
+
+/* 导航栏 */
+
 header {
     z-index: 1;
     height: 55px;
@@ -35,7 +169,8 @@ header {
     top: 0;
     position: fixed;
 }
-header >a{
+
+header>a {
     margin-right: 15%;
     font-weight: bolder;
 }
@@ -66,16 +201,6 @@ header >a{
 
 .nav a:hover {
     border-bottom: 2px solid rosybrown;
-}
-
-.model_area {
-    width: 100%;
-    height: 100vh;
-}
-
-.block_area {
-    width: 100%;
-    height: 61px;
 }
 
 
@@ -146,6 +271,7 @@ header >a{
 
 .z0 {
     z-index: -1;
+    opacity: 0;
 }
 
 
