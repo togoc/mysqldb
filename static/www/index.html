@@ -14,72 +14,81 @@
 
 <body>
     <header>
-        <a href="#home">home</a>
-        <a href="#login">login</a>
-        <a href="#new">new</a>
+        <a href="#">这里有一个很大的logo</a>
+        <div class="model">
+            <ul class="nav">
+                <li><a href="#normal">普通模式</a></li>
+                <li><a href="#login_model">登录模式</a></li>
+            </ul>
+        </div>
     </header>
-    <div id="home" class="home">home</div>
-    <div id="login" class="login">login</div>
-    <div id="new" class="new">new</div>
+    <div id="normal" class="model_area">
+        <div class="block_area"></div>
+        普通模式
+    </div>
+    <div id="login_model" class="model_area">
+        <div class="block_area"></div>
+        登录模式
+    </div>
+
+
+
+    <!-- 背景\提示\加载 -->
+    <div class="background z0">
+        <div class="loading ">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="login_tip z0">
+            <h3>提示</h3>
+            <div class="login_tip_container">
+                <p>请再登录界面登录</p>
+                <div class="login_tip_button">
+                    <input type="button" value="确定">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-<script src="/static/js/index.js"></script>
-<script>
+<script src="/static/js/index.js"> </script>
+<!-- <script>
 
-    let a = document.querySelectorAll('a')
-    for (let i = 0; i < a.length; i++) {
-        a[i].addEventListener('click', function (event) {
-
-            console.log(scrollX, scrollY)
-        })
-    }
-    window.onmousewheel = function (event) {
-        /*
-        0
-        1040
-        2080
-        */
-        var turn = event.wheelDelta
-        setTimeout(() => {
-            console.log(scrollY, turn)
-            if ((20 <= scrollY && scrollY <= 1020) && event.wheelDelta <= 0) {
-                window.scrollTo(0, 1040)
-            }
-            if ((scrollY <= 10) && event.wheelDelta >= 0) {
-                window.scrollTo(0, 0)
-            }
+                let a = document.querySelectorAll('a')
+                for (let i = 0; i < a.length; i++) { a[i].addEventListener('click', function (event) {
+                    console.log(scrollX, scrollY) }) } window.onmousewheel=function (event) { /* 0 1040 2080 */ var
+                    turn=event.wheelDelta setTimeout(()=> {
+                    console.log(scrollY, turn)
+                    if ((20 <= scrollY && scrollY <=1020) && event.wheelDelta <=0) { window.scrollTo(0, 1040) } if
+                        ((scrollY <=10) && event.wheelDelta>= 0) {
+                        window.scrollTo(0, 0)
+                        }
 
 
-            if ((1050 <= scrollY && scrollY <= 2000) && event.wheelDelta <= 0) {
-                window.scrollTo(0, 2080)
-            }
-            if ((500 <= scrollY && scrollY <= 1040) && event.wheelDelta >= 0) {
-                window.scrollTo(0, 0)
-            }
+                        if ((1050 <= scrollY && scrollY <=2000) && event.wheelDelta <=0) { window.scrollTo(0, 2080) } if
+                            ((500 <=scrollY && scrollY <=1040) && event.wheelDelta>= 0) {
+                            window.scrollTo(0, 0)
+                            }
 
 
 
 
-            if ((1050 <= scrollY && scrollY <= 2080) && event.wheelDelta >= 0) {
-                window.scrollTo(0, 1040)
-            }
+                            if ((1050 <= scrollY && scrollY <=2080) && event.wheelDelta>= 0) {
+                                window.scrollTo(0, 1040)
+                                }
 
-            if ((2080 <= scrollY) && event.wheelDelta <= 0) {
-                window.scrollTo(0, 2080)
-            }
-
-
-            // if ((2060 <= scrollY && scrollY <= 3000) && event.wheelDelta <= 0) {
-            //     window.scrollTo(0, 1040)
-            // }
-            // if ((2060 <= scrollY && scrollY <= 3000) && event.wheelDelta >= 0) {
-            //     window.scrollTo(0, 2080)
-            // }
+                                if ((2080 <= scrollY) && event.wheelDelta <=0) { window.scrollTo(0, 2080) } // if ((2060
+                                    <=scrollY && scrollY <=3000) && event.wheelDelta <=0) { // window.scrollTo(0,
+                                    1040) // } // if ((2060 <=scrollY && scrollY <=3000) && event.wheelDelta>= 0) {
+                                    // window.scrollTo(0, 2080)
+                                    // }
 
 
 
-        }, 100)
-    }
+                                    }, 100)
+                                    }
 
-</script>
+                                    </script> -->
 
 </html>
