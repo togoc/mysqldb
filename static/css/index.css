@@ -14,6 +14,7 @@ body {
 
 * {
     margin: 0;
+    white-space: nowrap;
     padding: 0;
 }
 
@@ -136,13 +137,15 @@ table {
     margin: auto;
     display: flex;
     justify-content: center;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .search_list {
     margin-top: 20px;
     padding: 5px;
     border-radius: 5px;
-    width: 50%;
+    width: 60%;
     margin-bottom: 5%;
     height: 90%;
 }

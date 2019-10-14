@@ -13,14 +13,16 @@ app.use('/static', express.static('static/'))
 
 
 
-app.get("/test", (req, res) => {
-    let sql = "select * from students "
+app.get("/table", (req, res) => {
+    console.log(req.query.sentence)
+    let sql = req.query.sentence
     pool(sql).then((re) => {
         res.send(re)
     })
 
 
 })
+
 
 
 
