@@ -29,9 +29,9 @@
             <div class="search fomat_width">
                 <div class="location">
                     <ul class="select">
-                        <li><a class="select_active" href="#">学生</a></li>
-                        <li><a href="#">教师</a></li>
-                        <li><a href="#">课程</a></li>
+                        <li><a class="select_active" id="students" href="#">学生</a></li>
+                        <li><a id="teacher" href="#">教师</a></li>
+                        <li><a id="course" href="#">课程</a></li>
                     </ul>
                 </div>
                 <div class="search_input_container">
@@ -45,12 +45,19 @@
             <div class="search_list fomat_width">
                 <form action="#">
                     <table border="1" cellspacing="0">
+                        <col width="10%" height="40px">
+                        <col width="10%" height="40px">
+                        <col width="10%" height="40px">
+                        <col width="10%" height="40px">
+                        <col width="20" height="40px">
+                        <col width="20%" height="40px">
+                        <col width="20%" height="40px">
                         <thead>
                             <tr>
-                                <th>学号</th>
-                                <th>名字</th>
-                                <th>性别</th>
-                                <th>年龄</th>
+                                <th class="sid">学号</th>
+                                <th class="name">名字</th>
+                                <th class="gender">性别</th>
+                                <th class="age">年龄</th>
                                 <th class="phone_number">联系电话</th>
                                 <th class="address">住址</th>
                                 <th class="remark">备注</th>

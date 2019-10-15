@@ -35,7 +35,7 @@ table {
     width: 100%;
 }
 
-.sid,
+/* .sid,
 .name,
 .gender,
 .age {
@@ -46,7 +46,7 @@ table {
 .address,
 .remark {
     width: 20%;
-}
+} */
 
 .td_container {
     height: 100%;

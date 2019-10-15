@@ -1,3 +1,4 @@
+let dic = []
 
 
 // let login_tip_button = document.querySelector('.login_tip_button input')
@@ -40,6 +41,29 @@ for (let i = 0; i < selectItems.length; i++) {
     selectItems[i].addEventListener("click", function () {
         toggleClassPlu(selectItems, "select_active")
         this.classList.add("select_active")
+        console.log(this.id)
+        switch (this.id) {
+            case "students":
+                // let t = `  
+                // <col width="10%" height="40px">
+                // <col width="10%" height="40px">
+                // <col width="10%" height="40px">
+                // <col width="10%" height="40px">
+                // <col width="20%" height="40px">
+                // <col width="20%" height="40px">
+                // <col width="20%" height="40px">`
+                // $('table').append(t)
+                // console.log($('col').remove())//删除所有
+                getTable("table?code=select&sentence=select * from students")
+                break;
+            case "teacher":
+                getTable("table?code=select&sentence=select * from teacher")
+                break;
+            case "course":
+                getTable("table?code=select&sentence=select * from course")
+                break;
+            default: alert("错误");
+        }
     })
 }
 
@@ -60,6 +84,8 @@ function ajax(url, type = "get", data = {}, processData = true, contentType = tr
     return new Promise((resolve, reject) => {
         $.ajax(method).done(
             function (res) {
+                console.log(res.data)
+                dic = res.data
                 resolve(res)
                 $(".background").hide()
             }
@@ -67,61 +93,111 @@ function ajax(url, type = "get", data = {}, processData = true, contentType = tr
     })
 }
 
-let dic = []
-function getStudent() {
-    let url = "table?sentence=select * from students"
+function getTable(url) {
     ajax(url).then((res) => {
-        dic = res
         let t = ""
-        for (let i = 0; i < res.length; i++) {
+        let arr = []
+        for (const i in dic[0]) {
+            arr.push(i)
+        }
+        console.log(arr)
+        for (let i = 0; i < dic.length; i++) {
             t +=
                 `
                 <tr align="left">
-                                <td class="sid">
+                                <td class="${arr[0]}">
                                     <div class="td_container">
-                                        <span>${res[i].sid}</span>
+                                        <span>${dic[i][arr[0]]}</span>
                                     </div>
                                 </td>
-                                <td class="name">
+                                <td class="${arr[1]}">
                                     <div class="td_container">
-                                        <span>${res[i].name}</span>
+                                        <span>${dic[i][arr[1]]}</span>
                                     </div>
                                 </td>
-                                <td class="gender">
+                                <td class="${arr[2]}">
                                     <div class="td_container">
-                                        <span>${res[i].gender}</span>
+                                        <span>${dic[i][arr[2]]}</span>
                                     </div>
                                 </td>
-                                <td class="age">
+                                <td class="${arr[3]}">
                                     <div class="td_container">
-                                        <span>${res[i].age}</span>
+                                        <span>${dic[i][arr[3]]}</span>
                                     </div>
                                 </td>
-                                <td class="phone_number">
+                                <td class="${arr[4]}">
                                     <div class="td_container">
-                                        <span>${res[i].phone_number}</span>
+                                        <span>${dic[i][arr[4]]}</span>
                                         <i class="edit"></i>
                                         </div>
                                 </td>
-                                <td class="address">
+                                <td class="${arr[5]}">
                                     <div class="td_container">
-                                        <span>${res[i].address}</span>
+                                        <span>${dic[i][arr[5]]}</span>
                                         <i class="edit"></i>
                                         </div>
                                 </td>
-                                <td class="remark">
+                                <td class="${arr[6]}">
                                     <div class="td_container">
-                                        <span>${res[i].remark}</span>
+                                        <span>${dic[i][arr[6]]}</span>
                                         <i class="edit"></i>
                                         </div>
                                 </td>
                             </tr>
                 `
-
         }
         $('.table').html(t)
+        let allTr = $("tr")
+        arr.map((val, index) => {
+            if (val == "name")
+                val = "姓名"
+            if (val.indexOf("id") != -1)
+                (val == "sid") ? (val = "学号") : ((val == "tid") ? (val = "工号") : (val = "课号"));
+            if (val == 'age')
+                val = "年龄"
+            if (val == 'gender')
+                val = "性别"
+            if (val == 'phone_number')
+                val = "电话"
+            if (val == 'address')
+                val = "住址"
+            if (val == 'remark')
+                val = "备注"
+            if (val == 'teacher')
+                val = "任课教师"
+            arr[index] = val
+        })
+
+        for (let i = 0; i < allTr.length; i++) {
+            for (let x = 0; x < arr.length; x++) {
+                $(allTr[i].children[x]).show()
+                $($("tr")[0]).children()[x].innerHTML = arr[x]
+            }
+        }
+        for (let i = 0; i < allTr.length; i++) {
+            for (let j = 6; j >= arr.length; j--) {
+                $(allTr[i].children[j]).hide()
+            }
+        }
     })
 }
+
+
+
+
+// function connectTable(sql, options = {}) {
+//     let options = {}
+//     let sql = ""
+//     let url = "table?code=select&sentence=select * from students"
+
+// }
+
+
+
+
+
+
+
 
 
 
@@ -130,10 +206,9 @@ function getStudent() {
 
 
 $(".table").click(function (event) {
-    // console.log(event.target.closest('div').parentNode.className == "phone_number" || "address")
-    console.log()
     if (event.target.nodeName == "I") {
-        let sid = $(event.target.closest("tr").children[0]).find('span').html()
+        let id = $(event.target.closest("tr").children[0]).find('span').html()
+        let rootid = $(event.target.closest("tr").children[0]).attr('class')
         let item = event.target.closest("td").className
         let tips = $(event.target).prev().html()
         let par = $(event.target.closest("td"))
@@ -144,8 +219,6 @@ $(".table").click(function (event) {
                         <input class="change_btn" type="button" value="确认">
                     </div>
                    `
-
-        // par.remove(par.children()[0])
         par.html(inpu)
         let change_input = document.querySelector('.change_input')
         let change_btn = document.querySelector('.change_btn')
@@ -155,23 +228,31 @@ $(".table").click(function (event) {
             }
             change_btn.addEventListener('click', function () {
                 let text = change_input.value.replace(/(^\s*)|(\s*$)/g, "").replace(/<|>|%|\\|"|=|'|{|}|!|\?|\(|\)|\*/, "-")
-                // /(^\s*)|(\s*$)/g, ""
-                if (item == "phone_number") {
-                    if (Boolean(Number(text))) {
+                let table = $(".select_active").attr('id')
 
+                // if (item == "phone_number") {
+                // if (Boolean(Number(text))) {
+                let sql = `update ${table} set ${item}='${text}' where ${rootid}='${id}'`
+                ajax("/table?code=update&sentence=" + sql).then((res) => {
+                    if (res.code == 1) {
+                        alert("修改成功!")
                     } else {
-                        alert("必须是数字呢")
-                        return
+                        alert("未知错误!")
                     }
-                }
-                if (item == "address") {
-                    console.log(Boolean(String(text)))
+                })
+                // } else {
+                // alert("必须是数字呢")
+                // return
+                // }
+                // }
+                // if (item == "address") {
+                //     console.log(Boolean(String(text)))
 
-                }
-                if (item == "remark") {
-                    console.log(Boolean(String(text)))
+                // }
+                // if (item == "remark") {
+                //     console.log(Boolean(String(text)))
 
-                }
+                // }
 
 
 
@@ -200,6 +281,7 @@ $(".table").click(function (event) {
 
 
 
+//绑定table
 
 
 
@@ -219,6 +301,9 @@ $(".table").click(function (event) {
 
 
 window.onload = function () {
+    getTable("table?code=select&sentence=select * from students")
     // $(".background").hide()
-    getStudent()
 }
+
+let id = "cid"
+let name = null;

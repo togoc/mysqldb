@@ -13,12 +13,22 @@ app.use('/static', express.static('static/'))
 
 
 
+
+
 app.get("/table", (req, res) => {
     console.log(req.query.sentence)
     let sql = req.query.sentence
-    pool(sql).then((re) => {
-        res.send(re)
-    })
+    if (req.query.code == "select") {
+        pool(sql).then((re) => {
+            res.send({ code: 1, data: re })
+        })
+    } else {
+        pool(sql).then((re) => {
+            pool("select * from students").then((re) => {
+                res.send({ code: 1, data: re })
+            })
+        })
+    }
 
 
 })
