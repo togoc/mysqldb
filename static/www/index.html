@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon.ico" />
     <link rel="stylesheet" href="./static/css/index.css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.js"></script>
+    <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.js"></script> -->
+    <script src="/static/js/juqery_3.4.1.js"></script>
     <title>mysql</title>
 
 </head>
@@ -25,7 +26,7 @@
     <div id="normal" class="model_area">
         <div class="block_area"></div>
         <div class="normal_container">
-            <div class="search">
+            <div class="search fomat_width">
                 <div class="location">
                     <ul class="select">
                         <li><a class="select_active" href="#">学生</a></li>
@@ -34,37 +35,73 @@
                     </ul>
                 </div>
                 <div class="search_input_container">
-                    <span>搜索内容:</span>
+                    <span></span>
                     <div class="search_input">
                         <input class="btn" type="input">
                         <span class=""></span>
                     </div>
                 </div>
             </div>
-            <div class="search_list">
+            <div class="search_list fomat_width">
                 <form action="#">
                     <table border="1" cellspacing="0">
-                        <col width="120px" height="40px">
-                        <col width="110px" height="40px">
-                        <col width="50px" height="40px">
-                        <col width="50px" height="40px">
-                        <col width="120px" height="40px">
-                        <col width="120px" height="40px">
-                        <col width="50px" height="40px">
-
                         <thead>
                             <tr>
                                 <th>学号</th>
                                 <th>名字</th>
                                 <th>性别</th>
                                 <th>年龄</th>
-                                <th>联系电话</th>
-                                <th>住址</th>
-                                <th>备注</th>
+                                <th class="phone_number">联系电话</th>
+                                <th class="address">住址</th>
+                                <th class="remark">备注</th>
                             </tr>
                         </thead>
                         <tbody class="table">
-
+                            <tr align="left">
+                                <td class="sid">
+                                    <div class="td_container">
+                                        <span>${res[i].sid}</span>
+                                    </div>
+                                </td>
+                                <td class="name">
+                                    <div class="td_container">
+                                        <span>${res[i].name}</span>
+                                    </div>
+                                </td>
+                                <td class="gender">
+                                    <div class="td_container">
+                                        <span>${res[i].gender}</span>
+                                    </div>
+                                </td>
+                                <td class="age">
+                                    <div class="td_container">
+                                        <span>${res[i].age}</span>
+                                    </div>
+                                </td>
+                                <!-- 修改输入框
+                                <div class="change_bar">
+                                    <input type="text" placeholder="">
+                                    <input type="button" value="确认">
+                                </div> -->
+                                <td class="phone_number" width="120px">
+                                    <div class="td_container">
+                                        <span>${res[i].phone_number}</span>
+                                        <i class="edit"></i>
+                                    </div>
+                                </td>
+                                <td class="address">
+                                    <div class="td_container">
+                                        <span>${res[i].address}</span>
+                                        <i class="edit"></i>
+                                    </div>
+                                </td>
+                                <td class="remark">
+                                    <div class="td_container">
+                                        <span>${res[i].remaek}</span>
+                                        <i class="edit"></i>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot></tfoot>
                     </table>
@@ -72,6 +109,7 @@
             </div>
         </div>
     </div>
+    <!-- 登录模式 -->
     <div id="login_model" class="model_area">
         <div class="block_area"></div>
         <div class="login_model_container">

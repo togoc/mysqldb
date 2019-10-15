@@ -26,13 +26,54 @@ html {
 /* 表 */
 
 form * {
-    border: 1px solid #eee;
-    font-size: 14px;
+    /* border: 1px solid #eee; */
+    font-size: 12px;
     padding: 0px;
 }
 
 table {
     width: 100%;
+}
+
+.sid,
+.name,
+.gender,
+.age {
+    width: 10%;
+}
+
+.phone_number,
+.address,
+.remark {
+    width: 20%;
+}
+
+.td_container {
+    height: 100%;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.td_container * {
+    border: 0px;
+    text-align: center;
+    /* width: 100%; */
+}
+
+.edit {
+    background-image: url(../images/edit.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    /* height: 100%; */
+    /* width: 30%; */
+    margin-left: 10px;
 }
 
 
@@ -61,7 +102,10 @@ table {
     margin-top: 20px;
     height: 20%;
     border-radius: 5px;
-    width: 50%;
+    width: 880px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 5px;
 }
 
@@ -116,19 +160,25 @@ table {
     color: rgb(231, 20, 20);
     height: 18px;
     width: 20px;
+    /* width: 100%; */
+    /* height: 100%; */
     background-image: url(../images/search.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border: .5px solid #767676;
     display: block;
-    border-left: none;
+    border: 0;
+    background-color: rgb(196, 60, 67);
     cursor: pointer;
 }
 
 .btn {
     outline: none;
+    border-radius: 0;
+    border: 0;
     border-width: 2px;
-    height: 100%;
+    height: 18px;
+    width: 100%;
 }
 
 .location {
@@ -142,12 +192,14 @@ table {
 }
 
 .search_list {
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    /* margin-bottom: 5%; */
     padding: 5px;
     border-radius: 5px;
-    width: 60%;
-    margin-bottom: 5%;
+    /* width: 60%; */
+    width: 880px;
     height: 90%;
+    margin: auto;
 }
 
 .login_model_container {
@@ -334,4 +386,65 @@ header>a {
     border-radius: 0px 25px 25px 25px;
     box-shadow: 0px 0px 50px rgb(99, 42, 165);
     transform: scale(.9);
+}
+
+.change_bar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .5s;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+}
+
+.change_bar input {
+    height: 100%;
+    width: 100%;
+    border: 0;
+    display: block;
+    border-radius: 0px;
+    outline: none;
+}
+
+.change_bar input:last-child {
+    cursor: pointer;
+    width: 30%;
+    background-color: rgb(19, 226, 216);
+}
+
+@media screen and (max-width:800px) {
+    .td_container i {
+        display: none;
+    }
+    .normal_container {
+        align-items: flex-start;
+        /* padding-left: 10%; */
+    }
+    .login_model_container {
+        align-items: flex-start;
+        /* padding-left: 10%; */
+    }
+    .td_container {
+        justify-content: center;
+    }
+    .search_input_container {
+        /* padding-left: 10%; */
+    }
+    .address {
+        display: none;
+    }
+    .phone_number {
+        display: none;
+    }
+    .remark {
+        display: none;
+    }
+    .fomat_width {
+        width: 380px;
+    }
+    /* .search{
+        width: 380px;
+    } */
 }

@@ -67,23 +67,55 @@ function ajax(url, type = "get", data = {}, processData = true, contentType = tr
     })
 }
 
-
+let dic = []
 function getStudent() {
     let url = "table?sentence=select * from students"
     ajax(url).then((res) => {
+        dic = res
         let t = ""
         for (let i = 0; i < res.length; i++) {
             t +=
                 `
-                <tr align="center">
-                <td class="sid">${res[i].sid}</td>
-                <td class="name">${res[i].name}</td>
-                <td class="gender">${res[i].gender}</td>
-                <td class="age">${res[i].age}</td>
-                <td class="phone_number">${res[i].phone_number}</td>
-                <td class="address">${res[i].address}</td>
-                <td class="remaek">${res[i].remaek}</td>
-                </tr>
+                <tr align="left">
+                                <td class="sid">
+                                    <div class="td_container">
+                                        <span>${res[i].sid}</span>
+                                    </div>
+                                </td>
+                                <td class="name">
+                                    <div class="td_container">
+                                        <span>${res[i].name}</span>
+                                    </div>
+                                </td>
+                                <td class="gender">
+                                    <div class="td_container">
+                                        <span>${res[i].gender}</span>
+                                    </div>
+                                </td>
+                                <td class="age">
+                                    <div class="td_container">
+                                        <span>${res[i].age}</span>
+                                    </div>
+                                </td>
+                                <td class="phone_number">
+                                    <div class="td_container">
+                                        <span>${res[i].phone_number}</span>
+                                        <i class="edit"></i>
+                                        </div>
+                                </td>
+                                <td class="address">
+                                    <div class="td_container">
+                                        <span>${res[i].address}</span>
+                                        <i class="edit"></i>
+                                        </div>
+                                </td>
+                                <td class="remark">
+                                    <div class="td_container">
+                                        <span>${res[i].remark}</span>
+                                        <i class="edit"></i>
+                                        </div>
+                                </td>
+                            </tr>
                 `
 
         }
@@ -91,6 +123,102 @@ function getStudent() {
     })
 }
 
+
+
+
+
+
+
+$(".table").click(function (event) {
+    // console.log(event.target.closest('div').parentNode.className == "phone_number" || "address")
+    console.log()
+    if (event.target.nodeName == "I") {
+        let sid = $(event.target.closest("tr").children[0]).find('span').html()
+        let item = event.target.closest("td").className
+        let tips = $(event.target).prev().html()
+        let par = $(event.target.closest("td"))
+        par.children().remove()
+        let inpu = `
+                    <div class="change_bar">
+                        <input class="change_input" type="text"  placeholder="${tips}">
+                        <input class="change_btn" type="button" value="确认">
+                    </div>
+                   `
+
+        // par.remove(par.children()[0])
+        par.html(inpu)
+        let change_input = document.querySelector('.change_input')
+        let change_btn = document.querySelector('.change_btn')
+        if (change_input) {
+            change_input.oninput = function () {
+                change_btn.title = change_input.value
+            }
+            change_btn.addEventListener('click', function () {
+                let text = change_input.value.replace(/(^\s*)|(\s*$)/g, "").replace(/<|>|%|\\|"|=|'|{|}|!|\?|\(|\)|\*/, "-")
+                // /(^\s*)|(\s*$)/g, ""
+                if (item == "phone_number") {
+                    if (Boolean(Number(text))) {
+
+                    } else {
+                        alert("必须是数字呢")
+                        return
+                    }
+                }
+                if (item == "address") {
+                    console.log(Boolean(String(text)))
+
+                }
+                if (item == "remark") {
+                    console.log(Boolean(String(text)))
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+                let newtext = `
+                <div class="td_container">
+                                            <span>${text}</span>
+                                            <i class="edit"></i>
+                                        </div>`
+                par.children().remove()
+                par.html(newtext)
+            })
+
+        }
+
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .addEventListener('mouserover', function () {
+//     console.log(1)
+// })
+
+
+
+
+
 window.onload = function () {
+    // $(".background").hide()
     getStudent()
 }
