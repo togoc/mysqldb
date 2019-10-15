@@ -108,6 +108,7 @@ CREATE TABLE teacher(
 |             查询语句+`order by  键名1,键名2`             |            可根据键名进行排序            |
 |          查询语句+`order by  键名1,键名2 DESC`           |           可根据键名进行反排序           |
 |        查询语句+`order by  键名1 ASC,键名2 DESC`         |               根据选择排序               |
-
+* 缺少update
+* 输入待处理
 
 

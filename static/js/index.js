@@ -228,10 +228,8 @@ $(".table").click(function (event) {
             }
             change_btn.addEventListener('click', function () {
                 let text = change_input.value.replace(/(^\s*)|(\s*$)/g, "").replace(/<|>|%|\\|"|=|'|{|}|!|\?|\(|\)|\*/, "-")
+                //数字待处理
                 let table = $(".select_active").attr('id')
-
-                // if (item == "phone_number") {
-                // if (Boolean(Number(text))) {
                 let sql = `update ${table} set ${item}='${text}' where ${rootid}='${id}'`
                 ajax("/table?code=update&sentence=" + sql).then((res) => {
                     if (res.code == 1) {
@@ -240,25 +238,6 @@ $(".table").click(function (event) {
                         alert("未知错误!")
                     }
                 })
-                // } else {
-                // alert("必须是数字呢")
-                // return
-                // }
-                // }
-                // if (item == "address") {
-                //     console.log(Boolean(String(text)))
-
-                // }
-                // if (item == "remark") {
-                //     console.log(Boolean(String(text)))
-
-                // }
-
-
-
-
-
-
 
 
 
@@ -278,23 +257,6 @@ $(".table").click(function (event) {
     }
 })
 
-
-
-
-//绑定table
-
-
-
-
-
-
-
-
-
-
-// .addEventListener('mouserover', function () {
-//     console.log(1)
-// })
 
 
 
