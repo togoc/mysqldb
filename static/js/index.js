@@ -297,10 +297,6 @@ $(".table").click(function(event) {
         let item = event.target.closest("td").className
         let tips = $(event.target).prev().html()
         let par = $(event.target.closest("td"))
-            // if (document.querySelector('.add_row')) {
-            //     alert("请输入")
-            //     return
-            // }
         if (document.querySelector('.change_input')) {
             alert("请修改")
             return
