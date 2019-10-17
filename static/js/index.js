@@ -74,7 +74,6 @@ function ajax(url, type = "get", data = {}, processData = true, contentType = tr
     return new Promise((resolve, reject) => {
         $.ajax(method).done(
             function(res) {
-                console.log(res.data)
                 dic = res.data
                 resolve(res)
                 $(".background").hide()
@@ -263,19 +262,6 @@ function insert() {
     })
 }
 
-
-// ajax(url, type = "post", {name}, true, true).then((res) => {
-//     console.log(obj)
-//     if (res.code === 1)
-//         alert("添加成功")
-//         // location.reload()
-// })
-let obj = { name: 11 }
-obj.__proto__.name = 22
-delete obj.__proto__.name
-delete obj.name
-console.log(obj.name)
-
 // 检查输入格式
 function format(obj) {
     for (const key in obj) {
@@ -299,18 +285,10 @@ function format(obj) {
                 return
             }
         }
-
-
-        // if (obj.hasOwnProperty(key)) {
-        //     const element = obj[key];
-
-        // }
     }
 
 }
-let str = "w   ( "
-str = str.replace(/\s/g, "")
-console.log(str)
+
 
 $(".table").click(function(event) {
     if (event.target.nodeName == "I") {
