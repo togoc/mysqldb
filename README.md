@@ -1,5 +1,21 @@
 # nodejs + mysql
 
+
+
+### 暂时内容
+* 添加主页面
+* 添加模式(普通/登录)
+* 自适应页面
+* 添加update
+* 本地保存,修改url
+* 添加insert
+  * 添加判断输入内容
+
+
+
+
+
+
 ### [下载地址](https://dev.mysql.com/downloads/mysql/)(用迅雷下快点)
 
 ### 安装过程
