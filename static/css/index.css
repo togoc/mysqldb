@@ -35,19 +35,6 @@ table {
     width: 100%;
 }
 
-/* .sid,
-.name,
-.gender,
-.age {
-    width: 10%;
-}
-
-.phone_number,
-.address,
-.remark {
-    width: 20%;
-} */
-
 .td_container {
     height: 100%;
     border: 0;
@@ -59,7 +46,6 @@ table {
 .td_container * {
     border: 0px;
     text-align: center;
-    /* width: 100%; */
 }
 
 .edit {
@@ -71,10 +57,19 @@ table {
     width: 15px;
     height: 15px;
     cursor: pointer;
-    /* height: 100%; */
-    /* width: 30%; */
     margin-left: 10px;
 }
+
+.insert {
+    cursor: pointer;
+    color: rgb(224, 17, 17);
+}
+
+.insert:hover {
+    background-color: rgb(152, 197, 68);
+    color: white;
+}
+
 
 
 /* 模式 */
@@ -408,10 +403,14 @@ header>a {
     outline: none;
 }
 
-.change_bar input:last-child {
+.change_btn {
     cursor: pointer;
     width: 30%;
     background-color: rgb(19, 226, 216);
+}
+
+.change_input {
+    text-align: center;
 }
 
 @media screen and (max-width:800px) {

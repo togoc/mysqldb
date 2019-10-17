@@ -29,7 +29,7 @@
             <div class="search fomat_width">
                 <div class="location">
                     <ul class="select">
-                        <li><a class="select_active" id="students" href="#">学生</a></li>
+                        <li><a class="" id="students" href="#">学生</a></li>
                         <li><a id="teacher" href="#">教师</a></li>
                         <li><a id="course" href="#">课程</a></li>
                     </ul>
@@ -53,7 +53,7 @@
                         <col width="20%" height="40px">
                         <col width="20%" height="40px">
                         <thead>
-                            <tr>
+                            <tr class="thead">
                                 <th class="sid">学号</th>
                                 <th class="name">名字</th>
                                 <th class="gender">性别</th>
@@ -64,51 +64,7 @@
                             </tr>
                         </thead>
                         <tbody class="table">
-                            <tr align="left">
-                                <td class="sid">
-                                    <div class="td_container">
-                                        <span>${res[i].sid}</span>
-                                    </div>
-                                </td>
-                                <td class="name">
-                                    <div class="td_container">
-                                        <span>${res[i].name}</span>
-                                    </div>
-                                </td>
-                                <td class="gender">
-                                    <div class="td_container">
-                                        <span>${res[i].gender}</span>
-                                    </div>
-                                </td>
-                                <td class="age">
-                                    <div class="td_container">
-                                        <span>${res[i].age}</span>
-                                    </div>
-                                </td>
-                                <!-- 修改输入框
-                                <div class="change_bar">
-                                    <input type="text" placeholder="">
-                                    <input type="button" value="确认">
-                                </div> -->
-                                <td class="phone_number" width="120px">
-                                    <div class="td_container">
-                                        <span>${res[i].phone_number}</span>
-                                        <i class="edit"></i>
-                                    </div>
-                                </td>
-                                <td class="address">
-                                    <div class="td_container">
-                                        <span>${res[i].address}</span>
-                                        <i class="edit"></i>
-                                    </div>
-                                </td>
-                                <td class="remark">
-                                    <div class="td_container">
-                                        <span>${res[i].remaek}</span>
-                                        <i class="edit"></i>
-                                    </div>
-                                </td>
-                            </tr>
+
                         </tbody>
                         <tfoot></tfoot>
                     </table>
