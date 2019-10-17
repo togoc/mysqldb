@@ -71,7 +71,6 @@ table {
 }
 
 
-
 /* 模式 */
 
 .model_area {
@@ -427,9 +426,6 @@ header>a {
     }
     .td_container {
         justify-content: center;
-    }
-    .search_input_container {
-        /* padding-left: 10%; */
     }
     .address {
         display: none;
