@@ -2,23 +2,6 @@ let arr = []
 let dic = []
 
 
-// 滚动进化
-window.addEventListener("mousewheel", function(event) {
-    /**
-     * 0
-     * 1002
-     */
-    let clientHeight = document.body.clientHeight
-    setTimeout(() => {
-        if (event.wheelDeltaY < 0 && scrollY > 0 && scrollY < clientHeight / 4)
-            scrollTo(0, clientHeight / 2)
-        if (event.wheelDeltaY > 0 && scrollY > clientHeight / 4)
-            scrollTo(0, 0)
-
-    }, 100);
-
-
-})
 
 //选择动画
 function toggleClassPlu(elem, name) {
@@ -104,12 +87,12 @@ function getTable(str) {
     let url = ""
     if (str == "") {
         if (!localStorage.getItem("table")) {
-            url = "table?code=select&sentence=select * from students"
+            url = "table/select?code=select&sentence=select * from students"
         } else {
-            url = "table?code=select&sentence=select * from " + localStorage.getItem("table")
+            url = "table/select?code=select&sentence=select * from " + localStorage.getItem("table")
         }
     } else {
-        url = "table?code=select&sentence=select * from " + str
+        url = "table/select?code=select&sentence=select * from " + str
         localStorage.setItem("table", str)
     }
     ajax(url).then((res) => {
@@ -247,7 +230,7 @@ function insert() {
                 }
             }
             let table = $(".select_active").attr('id')
-            let url = `/insert?code=insert&sentence=insert into ${table} set ?`
+            let url = `/table/insert?code=insert&sentence=insert into ${table} set ?`
             document.querySelector('.table').removeEventListener('change', function(ev) {
                 obj[ev.target.closest("td").className] = ev.target.value
             })
@@ -256,7 +239,7 @@ function insert() {
                 console.log(obj)
                 if (res.code === 1)
                     alert("添加成功")
-                location.reload()
+                    // location.reload()
             })
         }
     })
@@ -322,7 +305,7 @@ $(".table").click(function(event) {
                 //数字待处理
             let table = $(".select_active").attr('id')
             let sql = `update ${table} set ${item}='${text}' where ${rootid}='${id}'`
-            ajax("/table?code=update&sentence=" + sql).then((res) => {
+            ajax("/table/update?code=update&sentence=" + sql).then((res) => {
                 if (res.code == 1) {
                     alert("修改成功!")
                 } else {
@@ -342,24 +325,42 @@ $(".table").click(function(event) {
     }
 })
 
+// 滚动进化
+window.addEventListener("mousewheel", function(event) {
+    /**
+     * 0
+     * 1002
+     */
+    let clientHeight = document.body.clientHeight
+    setTimeout(() => {
+        if (event.wheelDeltaY < 0 && scrollY > 0 && scrollY < clientHeight / 4)
+            scrollTo(0, clientHeight / 2)
+        if (event.wheelDeltaY > 0 && scrollY > clientHeight / 4)
+            scrollTo(0, 0)
+
+    }, 100);
+
+
+})
 
 
 //监听窗口大小
 window.onresize = function() {
-        if (document.querySelector(".insert")) {
-            if (innerWidth > 800)
-                $(".insert").attr("colspan", arr.length)
-            if (innerWidth < 800) {
-                if ($(".select_active").html() === "学生")
-                    $(".insert").attr("colspan", 4)
-                if ($(".select_active").html() === "教师")
-                    $(".insert").attr("colspan", 3)
-                if ($(".select_active").html() === "课程")
-                    $(".insert").attr("colspan", 3)
-            }
+    if (document.querySelector(".insert")) {
+        if (innerWidth > 800)
+            $(".insert").attr("colspan", arr.length)
+        if (innerWidth < 800) {
+            if ($(".select_active").html() === "学生")
+                $(".insert").attr("colspan", 4)
+            if ($(".select_active").html() === "教师")
+                $(".insert").attr("colspan", 3)
+            if ($(".select_active").html() === "课程")
+                $(".insert").attr("colspan", 3)
         }
     }
-    //监听hash
+}
+
+//监听hash
 window.onhashchange = function() {
     if (document.querySelector(".insert")) {
         if (innerWidth > 800)

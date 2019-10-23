@@ -7,46 +7,17 @@ const bodyparser = require('body-parser');
 app.use(bodyparser.urlencoded({ extende: true }));
 app.use(bodyparser.json())
     //两种连接方式
-const pool = require("./mysqldb/pool")
 const terminate = require("./mysqldb/terminate")
 
 //app路径设置
 app.use('/', express.static('static/www'))
 app.use('/static', express.static('static/'))
 
+//数据库操作入口
+app.use("/table", require("./components/control_sql"))
 
 
 
-
-
-
-app.get("/table", (req, res) => {
-    console.log(req.query.sentence)
-    let sql = req.query.sentence
-    if (req.query.code == "select") {
-        pool(sql).then((re) => {
-            res.send({ code: 1, data: re })
-        })
-    } else if (req.query.code == "insert") {
-        console.log(req.query)
-    } else {
-        pool(sql).then((re) => {
-            pool("select * from students").then((re) => {
-                res.send({ code: 1, data: re })
-            })
-        })
-    }
-
-
-})
-
-app.post("/insert", (req, res) => {
-    pool(req.query.sentence, req.body).then((re) => {
-        pool("select * from students").then((re) => {
-            res.send({ code: 1, data: re })
-        })
-    })
-})
 
 
 

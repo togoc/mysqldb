@@ -437,6 +437,7 @@ header>a {
         display: none;
     }
     .fomat_width {
+        margin: auto;
         width: 380px;
     }
     /* .search{
