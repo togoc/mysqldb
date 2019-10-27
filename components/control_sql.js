@@ -15,6 +15,7 @@ router.get("/select", (req, res) => {
         })
     })
 }).get("/delete", (req, res) => {
+    console.log(req.query)
     pool(req.query.sentence).then((re) => {
         pool("select * from students").then((re) => {
             res.send({ code: 1, data: re })

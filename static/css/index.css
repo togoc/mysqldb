@@ -22,12 +22,35 @@ html {
     scroll-behavior: smooth;
 }
 
+.delete {
+    position: absolute;
+    right: -20px;
+    width: 20px;
+    height: 15px;
+    display: none;
+}
+
+em {
+    position: relative;
+    background-size: 15px 15px;
+    width: 20px;
+    display: block;
+    height: 15px;
+    background-repeat: no-repeat;
+    background-image: url("../images/delete.png");
+    background-position: right;
+    cursor: pointer;
+}
+
+.table>tr:hover .delete {
+    display: block;
+}
+
 
 /* 表 */
 
 form * {
-    /* border: 1px solid #eee; */
-    font-size: 12px;
+    font-size: 14px;
     padding: 0px;
 }
 
@@ -38,6 +61,7 @@ table {
 .td_container {
     height: 100%;
     border: 0;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -6,7 +6,7 @@ const options = {
     host: 'cdb-dwdx0mn8.bj.tencentcdb.com',
     user: 'root',
     password: 'tgc_423684',
-    port: "10207",//不能直接在host后面加端口
+    port: "10207", //不能直接在host后面加端口
     database: 'school'
 }
 
@@ -18,28 +18,28 @@ const pool = mysql.createPool(options)
  * 返回一个包含结果的Promise对象
  * @param {string} sql sql语句
  */
-const connection = function (sql, options) {
+const connection = function(sql, options) {
     return new Promise((resolve, reject) => {
-        pool.on('acquire', function (connection) {
+        pool.on('acquire', function(connection) {
             console.log('Pool Connection %d acquired', connection.threadId);
         });
-        pool.getConnection(function (err, connection) {
-            if (err)// throw err; // not connected!
+        pool.getConnection(function(err, connection) {
+            if (err) // throw err; // not connected!
                 console.log(err)
-            // Use the connection
-            connection.query(sql, options, function (error, results) {
+                // Use the connection
+            connection.query(sql, options, function(error, results) {
                 resolve(results)
 
                 // When done with the connection, release it.
                 connection.release();
                 // Handle error after the release.
 
-                if (error)// throw error;
+                if (error) // throw error;
                     console.log(error)
-                // Don't use the connection here, it has been returned to the pool.
+                    // Don't use the connection here, it has been returned to the pool.
             });
         })
-        pool.on('release', function (connection) {
+        pool.on('release', function(connection) {
             console.log('Pool Connection %d released', connection.threadId);
 
         });
@@ -54,10 +54,3 @@ const connection = function (sql, options) {
 
 
 module.exports = connection
-
-
-
-
-
-
-

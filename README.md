@@ -1,4 +1,4 @@
-# nodejs + mysql
+﻿﻿# nodejs + mysql
 
 
 
@@ -6,6 +6,7 @@
 * 添加主页面
 * 添加模式(普通/登录)
 * 自适应页面
+* ~~缺少update~~
 * 添加update
 * 修改页面插入方式
   * 原先直接插入整个html内容
@@ -15,6 +16,8 @@
 * 添加insert
   * 添加判断输入内容
 * 修改数据库路由
+* ~~缺少delete~~
+* 添加删除
 
 
 
@@ -130,6 +133,8 @@ CREATE TABLE teacher(
 |                查询语句+`order by  键名1,键名2`                 |            可根据键名进行排序            |
 |              查询语句+`order by  键名1,键名2 DESC`              |           可根据键名进行反排序           |
 |            查询语句+`order by  键名1 ASC,键名2 DESC`            |               根据选择排序               |
-* ~~缺少update~~
+
+
+
 
 

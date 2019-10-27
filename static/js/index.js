@@ -37,8 +37,7 @@ for (let i = 0; i < selectItems.length; i++) {
 
 
 
-//查询
-
+//ajax
 /**
  * @param {string} url 请求地址
  * @param {string} type 请求方式
@@ -137,7 +136,18 @@ function getTable(str) {
                 tr = `<tr align="left"></tr>`
             $(".table").append(tr)
             for (let j = 0; j < arr.length; j++) {
-                td = `
+                if (j === (arr.length - 1)) {
+                    td = `
+                <td class="${arr[j]}">
+                    <div class="td_container">
+                        <span>${dic[i][arr[j]]}</span>
+                        <i class="edit"></i>
+                        <div class="delete"><em class="delete_btn"></em></div>
+                    </div>
+                </td>
+                `
+                } else {
+                    td = `
                 <td class="${arr[j]}">
                     <div class="td_container">
                         <span>${dic[i][arr[j]]}</span>
@@ -145,6 +155,7 @@ function getTable(str) {
                     </div>
                 </td>
                 `
+                }
                 $($(".table").children()[i]).append(td)
             }
         }
@@ -153,7 +164,7 @@ function getTable(str) {
         //添加insert按钮并添加行
 
         tr = `
-            <tr align="center">
+            <tr align="center" class="add">
                 <td class="insert" colspan="${arr.length}">添加 + </td>
             </tr>
         `
@@ -162,7 +173,7 @@ function getTable(str) {
 
     })
 }
-
+//插入
 function insert() {
     let obj = Object.create(dic[0])
     $(".insert").click((event) => {
@@ -215,9 +226,7 @@ function insert() {
                     }
                 }
                 if (obj[key] != "") {
-                    console.log(key)
                     if (key.indexOf("age") != -1 || key.indexOf("phone_number") != -1) {
-
                         if (!Boolean(Number(obj[key]))) {
                             alert("年龄/电话号码必须为数字")
                             return
@@ -234,12 +243,10 @@ function insert() {
             document.querySelector('.table').removeEventListener('change', function(ev) {
                 obj[ev.target.closest("td").className] = ev.target.value
             })
-            console.log(obj)
             ajax(url, type = "post", obj, true, true).then((res) => {
-                console.log(obj)
                 if (res.code === 1)
                     alert("添加成功")
-                    // location.reload()
+                location.reload()
             })
         }
     })
@@ -272,58 +279,76 @@ function format(obj) {
 
 }
 
-
+//更新
 $(".table").click(function(event) {
-    if (event.target.nodeName == "I") {
-        let id = $(event.target.closest("tr").children[0]).find('span').html()
-        let rootid = $(event.target.closest("tr").children[0]).attr('class')
-        let item = event.target.closest("td").className
-        let tips = $(event.target).prev().html()
-        let par = $(event.target.closest("td"))
-        if (document.querySelector('.change_input')) {
-            alert("请修改")
-            return
-        } else {
-            par.children().remove()
-            let inpu = `
+        if (event.target.nodeName == "I") {
+            let id = $(event.target.closest("tr").children[0]).find('span').html()
+            let rootid = $(event.target.closest("tr").children[0]).attr('class')
+            let item = event.target.closest("td").className
+            let tips = $(event.target).prev().html()
+            let par = $(event.target.closest("td"))
+            if (document.querySelector('.change_input')) {
+                alert("请修改")
+                return
+            } else {
+                par.children().remove()
+                let inpu = `
             <div class="change_bar">
                 <input class="change_input" type="text"  placeholder="${tips}">
                 <input class="change_btn" type="button" value="确认">
             </div>
            `
-            par.html(inpu)
-        }
+                par.html(inpu)
+            }
 
-        let change_input = document.querySelector('.change_input')
-        let change_btn = document.querySelector('.change_btn')
-        change_input.oninput = function(ev) {
-            change_btn.title = change_input.value
-        }
+            let change_input = document.querySelector('.change_input')
+            let change_btn = document.querySelector('.change_btn')
+            change_input.oninput = function(ev) {
+                change_btn.title = change_input.value
+            }
 
-        change_btn.addEventListener('click', function() {
-            let text = change_input.value.replace(/(^\s*)|(\s*$)/g, "").replace(/<|>|%|\\|"|=|'|{|}|!|\?|\(|\)|\*/, "-")
-                //数字待处理
-            let table = $(".select_active").attr('id')
-            let sql = `update ${table} set ${item}='${text}' where ${rootid}='${id}'`
-            ajax("/table/update?code=update&sentence=" + sql).then((res) => {
-                if (res.code == 1) {
-                    alert("修改成功!")
-                } else {
-                    alert("未知错误!")
-                }
-            })
-            let newtext = `
+            change_btn.addEventListener('click', function() {
+                let text = change_input.value.replace(/(^\s*)|(\s*$)/g, "").replace(/<|>|%|\\|"|=|'|{|}|!|\?|\(|\)|\*/, "-")
+                    //数字待处理
+                let table = $(".select_active").attr('id')
+                let sql = `update ${table} set ${item}='${text}' where ${rootid}='${id}'`
+                ajax("/table/update?code=update&sentence=" + sql).then((res) => {
+                    if (res.code == 1) {
+                        alert("修改成功!")
+                    } else {
+                        alert("未知错误!")
+                    }
+                })
+                let newtext = `
                 <div class="td_container">
-                                            <span>${text}</span>
-                                            <i class="edit"></i>
-                                        </div>`
-            par.children().remove()
-            par.html(newtext)
+                    <span>${text}</span>
+                    <i class="edit"></i>
+                </div>`
+                par.children().remove()
+                par.html(newtext)
+            })
+
+
+        }
+    })
+    //删除
+$(".table").click(function(event) {
+    if (event.target.className === "delete_btn") {
+        $(event.target.closest("tr")).hide(800)
+        let tid = $(event.target.closest("tr")).children()[0].className
+        let id = $($(event.target.closest("tr")).children()[0]).find("span").html()
+        let table = $(".select_active").attr('id')
+        let sql = `delete from ${table} where ${tid}=${id}`
+        ajax("/table/delete?code=delete&sentence=" + sql).then((res) => {
+            if (res.code == 1) {
+                alert("修改成功!")
+            } else {
+                alert("未知错误!")
+            }
         })
-
-
     }
 })
+
 
 // 滚动进化
 window.addEventListener("mousewheel", function(event) {
