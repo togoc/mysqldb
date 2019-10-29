@@ -18,8 +18,8 @@
         <a href="#">这里有一个很大的logo</a>
         <div class="model">
             <ul class="nav">
-                <li><a href="#normal">普通模式</a></li>
-                <li><a href="#login_model">登录模式</a></li>
+                <li><a href="#normal">目录</a></li>
+                <li><a href="#login_model">检索信息</a></li>
             </ul>
         </div>
     </header>
@@ -34,13 +34,7 @@
                         <li><a id="course" href="#">课程</a></li>
                     </ul>
                 </div>
-                <div class="search_input_container">
-                    <span></span>
-                    <div class="search_input">
-                        <input class="btn" type="input">
-                        <span class=""></span>
-                    </div>
-                </div>
+
             </div>
             <div class="search_list fomat_width">
                 <form action="#">
@@ -75,12 +69,40 @@
     <div id="login_model" class="model_area">
         <div class="block_area"></div>
         <div class="login_model_container">
-            <div class="search">
-                <div class="location">当前位置</div>
-                <div class="search_input">搜索内容</div>
+            <div class="search_input_container">
+                <span></span>
+                <div class="search_input">
+                    <input class="btn" placeholder="请输入搜索内容" type="input">
+                    <span class=""></span>
+                </div>
+
             </div>
-            <div class="search_list">
-                搜索结果
+            <div class="search_list fomat_width">
+                <form action="#">
+                    <table border="1" cellspacing="0">
+                        <col width="10%" height="40px">
+                        <col width="10%" height="40px">
+                        <col width="10%" height="40px">
+                        <col width="10%" height="40px">
+                        <col width="20" height="40px">
+                        <col width="20%" height="40px">
+                        <col width="20%" height="40px">
+                        <thead>
+                            <tr class="thead">
+                                <th class="sid">学号</th>
+                                <th class="name">名字</th>
+                                <th class="gender">性别</th>
+                                <th class="age">年龄</th>
+                                <th class="phone_number">联系电话</th>
+                                <th class="address">住址</th>
+                                <th class="remark">备注</th>
+                            </tr>
+                        </thead>
+                        <tbody class="search_table">
+                        </tbody>
+                        <tfoot></tfoot>
+                    </table>
+                </form>
             </div>
         </div>
     </div>
